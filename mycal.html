@@ -1,0 +1,363 @@
+<head>
+<style>
+
+.wrapper {
+  display: grid;
+  grid-template-rows: 70px 1fr 70px;
+  grid-template-columns: 1fr;
+  grid-template-areas: "sidebar"
+                       "content";
+  width: 100vw; 
+  height: 100vh;
+}
+
+@media screen and (min-width: 850px) {
+  .wrapper {
+    grid-template-columns: 200px 5fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "sidebar content";
+  }
+}
+
+
+
+/* SIDEBAR */
+
+main {
+  grid-area: content;
+  padding: 48px;
+}
+
+sidebar {
+  grid-area: sidebar;
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-rows: 3fr 1fr;
+  grid-template-areas: "logo menu avatar"
+                       "copyright menu avatar";
+}
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.copyright {
+  text-align: center;
+}
+.avatar {
+  grid-area: avatar;
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+}
+.avatar__name {
+  flex: 1;
+  text-align: right;
+  margin-right: 1em;
+}
+.avatar__img > img {
+  display: block;
+}
+
+.copyright {
+  grid-area: copyright;
+}
+.menu {
+  grid-area: menu;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.logo {
+  grid-area: logo;
+}
+.menu__text {
+  display: none;
+}
+
+@media screen and (min-width: 850px) {
+  sidebar {
+    grid-template-areas: "logo"
+                         "avatar"
+                         "menu"
+                         "copyright";
+    grid-template-columns: 1fr;
+    grid-template-rows: 50px auto 1fr 50px;
+  }
+  
+  .menu {
+    flex-direction: column;
+    align-items: normal;
+    justify-content: flex-start;
+  }
+  .menu__text {
+    display: inline-block;
+  }
+  .avatar {
+    flex-direction: column;
+  }
+  .avatar__name {
+    margin: 1em 0;
+  }
+  .avatar__img > img {
+    border-radius: 50%;
+  }
+}
+
+
+
+
+/* MAIN */
+
+.toolbar{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+.calendar{}
+
+.calendar__week,
+.calendar__header {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);  
+}
+.calendar__week {
+  grid-auto-rows: 100px;
+  text-align: right;
+}
+
+.calendar__header {
+  grid-auto-rows: 50px;
+  align-items: center;
+  text-align: center;
+}
+
+.calendar__day {
+  padding: 16px;
+}
+
+
+
+
+/* COSMETIC STYLING */
+
+:root {
+  --red: #ED5454;
+}
+
+body {
+  font-family: Montserrat;
+  font-weight: 100;
+  color: black;
+}
+
+sidebar {
+  background-color: white;
+  box-shadow: 5px 0px 20px rgba(0, 0, 0, 0.2);
+}
+
+main {
+  background-color: #ED5454;
+}
+
+.avatar__name {
+  font-size: 0.8rem;
+}
+
+.menu__item {
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  font-weight: 500;
+  padding: 16px 16px 16px 14px;
+  border-left: 4px solid transparent;
+  color: inherit;
+  text-decoration: none;
+  transition: color ease 0.3s;
+}
+
+.menu__item--active .menu__icon {
+  color: var(--red);
+}
+.menu__item--active .menu__text {
+  color: var(--red);
+}
+
+.menu__item:hover {
+  color: orange;
+}
+
+
+.menu__icon {
+  font-size: 1.3rem;
+}
+
+@media screen and (min-width: 850px) {
+  .menu__icon {
+    font-size: 0.9rem;
+    padding-right: 16px;
+  }
+  .menu__item--active {
+    border-left: 4px solid var(--red);
+    box-shadow: inset 10px 0px 17px -13px var(--red);
+  }
+}
+
+.copyright {
+  font-size: 0.7rem;
+  font-weight: 400;
+}
+
+.calendar {
+  background-color: white;
+  border: 1px solid #e1e1e1;
+}
+
+.calendar__header > div {
+  text-transform: uppercase;
+  font-size: 0.8em;
+  font-weight: bold;
+}
+
+.calendar__day {
+  border-right: 1px solid #e1e1e1;
+  border-top: 1px solid #e1e1e1;
+}
+
+.calendar__day:last-child {
+  border-right: 0;
+}
+
+.toggle{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  text-align: center;
+  font-size: 0.9em;
+}
+
+</style>
+</head>
+
+
+<div class="wrapper">
+  <main>
+<centre>
+    <div class="toolbar">
+      
+      <div class="current-month">
+	<centre>
+         <Strong>January 2019<Strong>
+        </centre>
+       </div>
+</centre>
+      <div class="search-input">
+        <input type="text" value="">
+        <i class="fa fa-search"></i>
+      </div>
+    </div>
+    <div class="calendar">
+      <div class="calendar__header">
+        <div>mon</div>
+        <div>tue</div>
+        <div>wed</div>
+        <div>thu</div>
+        <div>fri</div>
+        <div>sat</div>
+        <div>sun</div>
+      </div>
+      <div class="calendar__week">
+        <div class="calendar__day day">1</div>
+        <div class="calendar__day day">2</div>
+        <div class="calendar__day day">3</div>
+        <div class="calendar__day day">4</div>
+        <div class="calendar__day day">5</div>
+        <div class="calendar__day day">6</div>
+        <div class="calendar__day day">7</div>
+      </div>
+      <div class="calendar__week">
+        <div class="calendar__day day">8</div>
+        <div class="calendar__day day">9</div>
+        <div class="calendar__day day">10</div>
+        <div class="calendar__day day">11</div>
+        <div class="calendar__day day">12</div>
+        <div class="calendar__day day">13</div>
+        <div class="calendar__day day">14</div>        
+      </div>
+      <div class="calendar__week">
+        <div class="calendar__day day">15
+<br> <img src = "data:image/png;base64,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" width = "20" height = "20"> Fill Sheet for Hackathon
+</div>
+        <div class="calendar__day day">16</div>
+        <div class="calendar__day day">17</div>
+        <div class="calendar__day day">18</div>
+        <div class="calendar__day day">19</div>
+        <div class="calendar__day day">20</div>
+        <div class="calendar__day day">21</div>    
+      </div>
+      <div class="calendar__week">
+        <div class="calendar__day day">22</div>
+        <div class="calendar__day day">23</div>
+        <div class="calendar__day day">24</div>
+        <div class="calendar__day day">25</div>
+        <div class="calendar__day day">26</div> 
+        <div class="calendar__day day">27
+        <br> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAjVBMVEX/AAD/////srL/IyP/oKD/BAT/fX3//Pz/zs7/8vL/wcH/6ur/7e3/WFj/4OD/r6//Ly//yMj/KCj/+Pj/2tr/hob/mJj/UFD/Dg7/gID/XV3/cnL/Rkb/trb/j4//GBj/qKj/aGj/1dX/d3f/qqr/5OT/zc3/vb3/Pz//jY3/MzP/nJz/TU3/XFz/bGyoWEfoAAAEZElEQVR4nO3d2XaqWBSFYUQiPYj0nShK7HJ8/8crNKmUx4DSbMhy1PwvMzLI/oRsCBdZ3KQ223a2h1nZYZvbtlj/jbTjar4uOyufuykRHHnUhd0m2rKmXtPk1h91jVBy37j7Qqn3UlsnG/m7tRMOm7V+bb1ZrnaWZGjND1Et5Bc/fGWZOeqlali84P45Bj8XMvVnq1RqeE1VCs2Ko14KViwFj1J3Xhgdq1fxtZZk4ylNPvEqoZrUHTbJWVOqck6xP3+k+7d5tDSeHq1KmE5rP7jhT6ITJouaS6iit8X62e5QJeRrhZwwBOo70Qmzxrjv5srDg7YTvg0nFDVnWbm/NWhvPdh1iAi1fOvX/dAmnS2bslCUzE2Hq/OvpgeHrFA13X1P3rWPmrX9tlBy9b6n73txceWto+VeumTKs4Vm972mfVTdOVoKuVhl5ssjlrpLU56BkAt2tbtWi+Ti1PXWMLiwPI1Gzwdw29mt2fMYCrmF8PxpsDbRUZZMf/mGEHKcLhTdfGq61AfisRVyge6133LkNIyeH5qIsDTu3VbXqs3HH4PymAvLMn/XcM/RTn7287UI85gLL0XKw3dDoi2r6XoE3LVBhGX6STIK7f4uKcqq4UjCeugr87ahhNzlpUnspYpivUuX3i1F2QlP3rMM0YDCr7LF/NKC1bN024YX/nYQQkg/CCGkH4QQ0g9CCOkHIYT0gxBC+kEIIf0ghJB+EEJIPwghpB+EENIPQgjpByGE9IMQQvpBCCH9IISQfhBCSD8IIaQfhBDSD0II6QchhPSDEEL6QQgh/SCEkH4QQkg/CCGkH4QQ0g9CCOkHIYT0gxBC+kEIIf0ghJB+EEJIPwghpB+EENIPQsrCIFhcezwl4yWFWbIOT1szTZVru9RceRu/ZpLSywn3m60lOYV8NyHE1ozc2p4rFvlSwqOrFOq97SZRK/LD/TpfR6jzWpOxv6Kd/z0Z6yWE0+Os1TRXcZX8Ny+EvnCuu1Yb3mfp9ywb4sLp2lM6Dq0zzxl9oe6lLSZR3yebEW3h/KD0ncdXCAu6Ql0pGIxtF401TWHgFiwmRl6NJmf2Fr5lzQdKN2gaddg6HyRXTcxtJwyWK2aDuOb+ssfe0ryW51CYvMcseJnuNhr9/hvCibytHS7ftL3L95jzObhwMsm9PltRFvM5q81lKOHEzsOuPt90Rvnt6ym8DLw9d+DNTz/+2Bu+jsIyedZqNGWQnEY+eV91F5a32G10bHJ/DObJ2WTw2NKtPsIyx3syITY7/tl41uiX5k09hWUO7830qinN2T4Kva3FblR5t/oLy2zD2vGCG0f+Z1EcCnyqSMaYd4W6mAivibJaGJ89fIc0duyEVIMQQvpBCCH9IISQfhBCSD8IIaQfhBDSD0II6QchhPSDEEL6QQgh/SCEkH4QQkg/CCGkH4QQ0g9CCOkHIYT0gxBC+kEIIf0ghJB+EEJIPwghpN//U2hmdULuNPoCe1clzN1ZTSHb/7YySv8AHTmRhcyjPjQAAAAASUVORK5CYII=" alt="avatar" height = "20" width = "20">    Finish WPS Assignment
+        </div> 
+        <div class="calendar__day day">28
+<br>
+<img src = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAjVBMVEVBaeH///9SdePF0fZIb+K1w/I+Z+E4Y+A7ZeCdse81YeAzYOD8/f/o7PvZ4Pjy9f3P2PdafOV2kun4+v5+mOrw8/1ggOVqh+a9yPNWeOTj6Pry9P1Nc+NzkOmMo+yOpe2cru6ouPDb4/nAzfXI1Pa5xfOFnuuvvPBmh+d8l+rR2/cpWt+pu/GVqu1jg+Z2E83gAAAFO0lEQVR4nO3dW3eiSBSG4VIKqgTxhIgQBDko0cT8/583oN3p6QSMQGl2Zr73Kiurm8UToEq9cLNBY2MnyF5HZUmWOk7zvyMea/i9E+wOzLLEOctiGz34PuTYmU7dc09TZ9zyPzcIJ9vQkuxPhrT4adL7VFvn2OlklunJKVqe258SXZtN7Onth6gXZnPTYB8z/XXbv1+v7GNWbA/PQ2mZQshfCWGabL44FVp64z1VK8xC+clXXUi+Uym4ljsr4sWKV7LPf2rDkEKGXpTMbjlUndD1Ph/1cmgvUCypLdAjb86ENBpO4/eDw+aHwv7yaHXCfNh06HCt3vOhYOQNuWFc1/2+lgbz9+kXB6wTasOmQ3L9Hqj3xsHIN7+6dh+Q0ny+frOSEY6nweubJW7H/Tmrl83xyqpDRDhNdwdh1q5vNySMqNlIQpiuY1905Z1PTPijpkXw+4VudvJYl7vz71OTXsO5fbcwHW2GosXS0pzgUe3W0U7IEqW88W7hs5otvVvlZazbOVoJS+LJVeYLovKklFy+32cXar2FzDD9XMV7DMfWy61BHe7SUIGQMSliu+cLcCfI99xSePHUCstHeq5//WqwuSBP3jrvfI8Rli+VFnrHx9HVRgvea+t7iLBcIPimaG90tO3Cl/fiKRWWSb4atbpXnTz2huq2hvsLq7dn/HDTW9Cy6e4QVlvDPXnKhVXC4tHs6mdDY2fqarH/Yind+JpSLyyTFl8Wk8CdfmSOHdcOJnq0Ep3eEnXqLsIyYYrhJn7N8tlxcuk4y7Viu38OLavuc5a7dS8hqx5KaVqS+6tLPmfV52MPtF26o/CS8R57OO7c3YXfHoQQ0g9CCOkHIYT0gxBC+kEIIf0ghJB+EEJIPwghpB+EENIPQgjpByGE9IMQQvpBCCH9IISQfhBCSD8IIaQfhBDSD0II6QchhPSDEEL6QQgh/SCEkH4QQkg/CCGkH4QQ0g9CCOkHIYT0gxBC+kEIIf0ghJB+EEJIPwghpB+EENIPQgjpByGE35jx/oXvV7/t/UcKDUMIU7AwnJ8bciZE43S9HyeUwpL+pho9utby2blcW+tJvJgzq27mwk8SlpfO4pvTbjYJ3I/zpcZTO53totXnWXs/Rygt4SUz2702MXZqT5K3l7+HYv0EoVHdmnyvPY1vmJo1Hqcx+/dkLPJCw5AsXDUOMqxXrj3+/kgSF1azYTejDlOV8+Xwl5G0UEp/mVwbJ3otbR+ejXSFhskXSd5iEvXHnOxQvRQgKjSE+TbK+8yqq7L1uTRICg1TLnNbwUjFcRC9KBGqHAJUrp2Wn6jgXYxZmPUXhlwZsdoa9moH0jt1G00rocGL9UoNUTJ/U/RYW26vpVAfTCLee4KhIcPN6Na5ew8XDpy112vemCGkt836rp33FA4GaTI3O/NMP87SnqNa7y4cOOmWm12moFvssE6fHsjrKqxWrViYbYY2lm8aLOtZtx+yuPxVR2GZM+LnD05u0FXzOflGf7yuqruw2mKXc/7V+M1Sx/23WFO1r7euj7AsKCLPZ6LuQ5Py+kohw9UmLo6PkDTVU1gWaEm8WHFpihJ0qfzJNJn/fDgl2fHBC8un+gsH1RzxY74utvFycWkfnYq1NkuVveTskxLhJefJtS+5n0fLfl8KhUSDEEL6QQgh/SCEkH4QQkg/CCGkH4QQ0g9CCOkHIYT0gxBC+kEIIf0ghJB+EEJIPwghpB+EENIPQgjpByGE9IMQQvpBCCH9IISQfhBCSD8IIaTf/1TITVEf+48Ig2TUlNpvW3lI/wAUA6LeV3NhJgAAAABJRU5ErkJggg==" height = "20" width = "20"> AI Quiz 
+
+
+
+
+</div>
+</div>
+      <div class="calendar__week">
+        <div class="calendar__day day">29</div>
+        <div class="calendar__day day">30 
+<br> <img src="data:image/png;base64,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" height = "20" width = "20"> Submit IP Assignment
+</div>
+        <div class="calendar__day day">31</div>
+        <div class="calendar__day day">1</div>
+        <div class="calendar__day day">2</div>
+        <div class="calendar__day day">3</div>
+        <div class="calendar__day day">4</div>
+      </div>
+    </div>
+  </main>
+  <sidebar>
+    <div class="logo"></div>
+    <div class="avatar">
+      <div class="avatar__img">
+        <img src="https://picsum.photos/70" alt="avatar">
+      </div>
+      <div class="avatar__name">Student</div>
+    </div>
+    <nav class="menu">
+      <a class="menu__item" href="#">
+        <i class="menu__icon fa fa-home"></i>
+        <span class="dashboard">Dashboard</span>
+      </a>
+     
+      
+      <a class="menu__item menu__item--active" href="#">
+        <i class="menu__icon fa fa-calendar"></i>
+        <span class="menu__text">calendar</span>
+      </a>
+      <a class="menu__item" href="#">
+        <i class="menu__icon fa fa-bar-chart"></i>
+        <span class="menu__text">Create Event</span>
+      </a>
+      <a class="menu__item" href="#">
+        <i class="menu__icon fa fa-trophy"></i>
+        <span class="menu__text">Share Schedule</span>
+      </a>
+      <a class="menu__item" href="#">
+        <i class="menu__icon fa fa-sliders"></i>
+        <span class="menu__text">Statistics</span>
+      </a>
+    </nav>
+    
+  </sidebar>
+</div>
